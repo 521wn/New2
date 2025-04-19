@@ -1,0 +1,35 @@
+# 新增硬件接口配置
+hardware_interface_type: "hardware_interface/EffortJointInterface"
+arm_controller:
+  type: "position_controllers/JointTrajectoryController"
+  joints: 
+    - joint1
+    - joint2
+    - joint3
+  gains:
+    joint1: {p: 2000, i: 50, d: 200}
+    joint2: {p: 1500, i: 40, d: 150}
+    joint3: {p: 1000, i: 30, d: 100}
+  constraints:
+    goal_time: 0.1
+    stopped_velocity_tolerance: 0.01
+  gravity_compensation: true
+
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+
+gazebo_ros_control:
+  pid_gains:
+    joint1:
+      p: 500
+      i: 0.1
+      d: 2
+    joint2:
+      p: 400
+      i: 0.1
+      d: 1.5
+    joint3:
+      p: 300 
+      i: 0.1

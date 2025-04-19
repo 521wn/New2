@@ -1,0 +1,46 @@
+<launch>
+  <!-- 加载Gazebo基础环境 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused"       value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui"          value="true"/>
+    <arg name="debug"        value="false"/>
+  </include>
+
+  <!-- 加载URDF到参数服务器 -->
+  <param name="robot_description" 
+         textfile="$(find ur_arm)/urdf/ur_arm.urdf"/>
+
+  <!-- 生成机器人模型到Gazebo -->
+  <node name="ur_arm_spawn" 
+        pkg="gazebo_ros" 
+        type="spawn_model"
+        args="-urdf -model ur_arm -param robot_description -z 0.0u6050_pkg"
+        output="screen"/>
+
+  <!-- 加载关节-控制器配置 -->
+  <rosparam file="$(find ur_arm)/config/ur_arm_controllers.yaml" 
+            command="load"/>
+
+  <!-- 启动关节控制器 -->
+  <node name="controller_spawner" 
+        pkg="controller_manager" 
+        type="spawner"
+        args="joint1_position_controller
+              joint2_position_controller
+              joint3_position_controller
+              joint_state_controller"
+        output="screen"/>
+
+  <!-- 基础坐标系转换（可选） -->
+  <node name="base_to_world_tf" 
+        pkg="tf" 
+        type="static_transform_publisher"
+        args="0 0 0 0 0 0 world base_link 100"/>
+  
+  <!-- 启动传感器节点（如果需要的话） -->
+  <!--<node name="mpu6050_node" pkg="mpu6050_init_pkg" type="mpu6050_init_node.py" output="screen"/>-->
+
+  <!-- 启动机械臂控制节点（如果需要的话） -->
+  <!--<node name="ur_arm_control" pkg="ur_arm" type="ur_arm_control.py" output="screen"/> -->
+</launch>

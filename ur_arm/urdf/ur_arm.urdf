@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+<robot
+  name="ur_arm">
+  <!-- 在原base_link定义之前添加以下内容 -->
+  <link name="world"/>
+
+    <joint name="world_joint" type="fixed">
+      <parent link="world"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.000187977416899944 0.000386906676497267 0.0210651773735545"
+        rpy="0 0 0" />
+      <mass
+        value="0.0971002124921789" />
+      <inertia
+        ixx="0.000126290753658982"
+        ixy="-3.98073630009447E-06"
+        ixz="-5.90945358259854E-07"
+        iyy="0.000120029056021776"
+        iyz="-1.21651133817239E-06"
+        izz="0.000205846014629657" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-0.00040859 -0.02867 0.00085855"
+        rpy="0 0 0" />
+      <mass
+        value="0.14139" />
+      <inertia
+        ixx="0.0002106"
+        ixy="3.3272E-05"
+        ixz="-1.0701E-06"
+        iyy="0.00012359"
+        iyz="3.6479E-06"
+        izz="0.00023886" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.04869"
+      rpy="-1.5394 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.87"
+      upper="0.87"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="0.0334449586618212 0.0685271675060545 -0.00215096289118835"
+        rpy="0 0 0" />
+      <mass
+        value="0.122943710994718" />
+      <inertia
+        ixx="0.000119773624785502"
+        ixy="7.19142469780315E-19"
+        ixz="-2.27934106463869E-20"
+        iyy="1.52410107196372E-05"
+        iyz="3.33485484269343E-06"
+        izz="0.000121388031837196" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="-0.03305 -0.14197 0.0044561"
+      rpy="3.1416 0 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="2.09"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="Link3">
+    <inertial>
+      <origin
+        xyz="0.00280459990209161 0.0619602440401176 0.0367843797766421"
+        rpy="0 0 0" />
+      <mass
+        value="0.0852300368678392" />
+      <inertia
+        ixx="4.38404770804073E-05"
+        ixy="3.84071439290302E-07"
+        ixz="-7.49103854179788E-08"
+        iyy="3.42169694960761E-05"
+        iyz="5.62690796250091E-09"
+        izz="1.95082152284413E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0 0.13793 -0.0043295"
+      rpy="0 1.5708 0" />
+    <parent
+      link="Link2" />
+    <child
+      link="Link3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.047"
+      upper="1.047"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="Link4_left">
+    <inertial>
+      <origin
+        xyz="-0.017289711016892 -5.45991042466137E-05 0.0266369907714521"
+        rpy="0 0 0" />
+      <mass
+        value="0.0194791159436959" />
+      <inertia
+        ixx="1.70355335129061E-06"
+        ixy="-1.62752911557135E-07"
+        ixz="-5.01575539559182E-07"
+        iyy="3.67893000790413E-06"
+        iyz="-8.11493770414506E-08"
+        izz="3.7662440729562E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link4_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link4_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4_left"
+    type="prismatic">
+    <origin
+      xyz="-0.0026814 0.10369 0.0335"
+      rpy="3.1416 0 -1.6022" />
+    <parent
+      link="Link3" />
+    <child
+      link="Link4_left" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.016"
+      upper="0.024"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="Link4_right">
+    <inertial>
+      <origin
+        xyz="-0.0172897062203861 -5.4446293390284E-05 -0.0251507676490662"
+        rpy="0 0 0" />
+      <mass
+        value="0.0194791159436959" />
+      <inertia
+        ixx="1.70354657168805E-06"
+        ixy="-1.62758902517759E-07"
+        ixz="5.01575291211585E-07"
+        iyy="3.67893039067829E-06"
+        iyz="8.11414649912117E-08"
+        izz="3.76623767612795E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link4_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur_arm/meshes/Link4_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4_right"
+    type="prismatic">
+    <origin
+      xyz="-0.0026814 0.10369 0.0335"
+      rpy="3.1416 0 -1.6022" />
+    <parent
+      link="Link3" />
+    <child
+      link="Link4_right" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.016"
+      upper="0.024"
+      effort="100"
+      velocity="1" />
+  </joint>
+  
+  <transmission name="joint1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint3_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+
+<!-- 在根标签 <robot> 内添加 -->
+<gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+</robot>

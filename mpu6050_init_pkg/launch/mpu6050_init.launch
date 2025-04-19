@@ -1,0 +1,16 @@
+<launch>
+    <!-- 启动MPU6050节点 -->
+    <node pkg="mpu6050_init_pkg" type="mpu6050_init_node.py" name="mpu6050_node" output="screen"/>
+    
+    <!-- 启动RVIZ -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mpu6050_init_pkg)/config/imu_display.rviz"/>
+    
+    <!-- 启动rqt_plot -->
+   <node pkg="rqt_plot" type="rqt_plot" name="plot_sensor1_rpy"
+        args="/sensor1/imurpy/x /sensor1/imurpy/y /sensor1/imurpy/z"/>
+  <node pkg="rqt_plot" type="rqt_plot" name="plot_sensor2_rpy"
+        args="/sensor2/imurpy/x /sensor2/imurpy/y /sensor2/imurpy/z"/>
+  <node pkg="rqt_plot" type="rqt_plot" name="plot_sensor3_rpy"
+        args="/sensor3/imurpy/x /sensor3/imurpy/y /sensor3/imurpy/z"/>
+    
+</launch>

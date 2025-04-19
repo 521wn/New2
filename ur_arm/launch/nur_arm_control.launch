@@ -1,0 +1,52 @@
+<launch>
+    <param name="/use_sim_time" value="true"/>
+
+        <!-- 基础参数 -->
+    <arg name="gui" default="true" />
+    <arg name="rviz_config" default="$(find ur_arm)/rviz/ur_control.rviz"/>
+    <arg name="urdf_path" default="$(find ur_arm)/urdf/ur_arm.urdf"/>
+
+    <!-- 1. 启动Gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+
+    <!-- 2. 加载自定义URDF模型 -->
+   <param name="robot_description" 
+         textfile="$(find ur_arm)/urdf/ur_arm.urdf"/>
+ <!-- 3. 在Gazebo中生成机械臂 -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param robot_description -model ur_arm -z 0"
+        output="screen"/>
+
+    <!-- 4. 加载Gazebo控制插件 -->
+    <rosparam file="$(find ur_arm)/config/ngazebo_controllers.yaml" command="load"/>
+
+    <!-- 5. 启动控制器管理器 -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+      respawn="false" output="screen"
+      args="--timeout 60 arm_controller joint_state_controller"/>
+
+    <!-- 6. 启动机器人状态发布 -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" 
+          type="robot_state_publisher" output="screen"/>
+
+    <!-- 7. Rviz可视化 -->
+    <node name="rviz" 
+          pkg="rviz" 
+          type="rviz" 
+          args="-d $(find arm_pkg)/config/arm.rviz" 
+          required="true"/>
+
+    <!-- 8. 传感器节点 -->
+    <node pkg="mpu6050_init_pkg" type="nmpu6050_arm_node.py" 
+          name="imu_sensors" output="screen"/>
+
+    <!-- 9. 控制节点 -->
+    <node pkg="ur_arm" type="narm_control_node.py" 
+          name="narm_control" output="screen">
+        <param name="publish_rate" value="10" />
+    </node>
+</launch>
